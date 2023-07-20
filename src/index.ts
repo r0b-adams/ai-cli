@@ -23,14 +23,15 @@ const template = new PromptTemplate({
 });
 
 const init = async () => {
-  while (true) {
+  let loop = true;
+  while (loop) {
     try {
       const question = await input({ message: 'Ask a coding question:' });
       switch (question) {
         default:
           const prompt = await template.format({ question });
           const output = await model.call(prompt);
-          console.log(output); // parser.parse() throwing error when passing output
+          console.log(await parser.parse(output));
           break;
 
         case '':
@@ -40,8 +41,8 @@ const init = async () => {
         case 'q':
         case 'quit':
         case 'exit':
+          loop = false;
           console.log('exiting...goodbye!');
-          process.exit();
       }
     } catch (error) {
       console.log(error);
