@@ -31,7 +31,8 @@ const init = async () => {
         default:
           const prompt = await template.format({ question });
           const output = await model.call(prompt);
-          console.log(await parser.parse(output));
+          const result = await parser.parse(output);
+          console.log(result);
           break;
 
         case '':
