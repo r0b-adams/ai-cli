@@ -26,6 +26,7 @@ import { template } from './template';
         case 'exit':
           loop = false;
           console.log('exiting...goodbye!');
+          break;
       }
     } catch (error) {
       console.log(error);
