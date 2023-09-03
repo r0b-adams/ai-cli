@@ -1,8 +1,8 @@
 {
-  "name": "ai-cli",
+  "name": "ai-study-buddy",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:r0b-adams/ai-cli.git",
+  "repository": "git@github.com:r0b-adams/ai-study-buddy.git",
   "author": "Robert Adams <adamsiii.robert@gmail.com>",
   "license": "MIT",
   "scripts": {
