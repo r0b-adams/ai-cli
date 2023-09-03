@@ -8,13 +8,6 @@ import { template } from "./template";
 main();
 
 async function main() {
-  try {
-    await fsp.access("history", fsp.constants.F_OK);
-  } catch (error) {
-    console.log(error);
-    await fsp.mkdir("history");
-  }
-
   let loop = true;
   while (loop) {
     try {
@@ -23,16 +16,12 @@ async function main() {
         default:
           const prompt = await template.format({ question });
           const output = await model.call(prompt);
-
           if (!output) {
             console.log("Hmmm...try rephrasing the question");
             break;
           }
-
-          const path = `history/question_${dayjs().format(
-            "YYYY_MM_DD-HH_mm_sss"
-          )}.md`;
-          await fsp.writeFile(path, output);
+          console.log(output);
+          write(question, output);
           break;
 
         case "":
@@ -50,4 +39,17 @@ async function main() {
       console.log(error);
     }
   }
+}
+
+async function write(question: string, output: string) {
+  try {
+    await fsp.access("history", fsp.constants.F_OK);
+  } catch (error) {
+    await fsp.mkdir("history");
+  }
+  const time = dayjs().format("YYYY_MM_DD-HH_mm_sss");
+  const path = `history/question_${time}.md`;
+
+  await fsp.appendFile(path, `# ${question}\n\n`);
+  await fsp.appendFile(path, output);
 }
