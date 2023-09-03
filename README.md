@@ -1,6 +1,8 @@
 # ai-study-buddy
 
-A CLI that interfaces with ChatGPT. ChatGPT behaves as an expert in TypeScript and JavaScript
+A CLI that interfaces with ChatGPT. 
+
+ChatGPT behaves as an expert in TypeScript and JavaScript.
 
 ## Installation
 
